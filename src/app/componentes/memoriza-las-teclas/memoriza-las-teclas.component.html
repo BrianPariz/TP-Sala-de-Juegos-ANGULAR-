@@ -1,8 +1,8 @@
 <form name="juego">
     <div class="container" style="text-align: center; padding: 5%;">
-        <h1>Perro</h1>
+        <h1>{{palabra}}</h1>
         <div class="row" style="padding: 5%;">
-            <input class="form-control" type="text" style="text-align:center;" (keydown)="onKeydown($event)" maxlength="1">
+            <input id="palabraInput" class="form-control" type="text" style="text-align:center;" (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)" >
         </div>
     </div>
 </form>
