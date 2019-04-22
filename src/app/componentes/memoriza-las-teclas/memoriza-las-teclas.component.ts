@@ -60,8 +60,8 @@ export class MemorizaLasTeclasComponent implements OnInit {
     let charCode = event.keyCode;
 
     if(charCode === 8) {
-      debugger;
-      this.input = value.replace(value.charAt(this.lastChar), "");
+      this.input = value.replace(new RegExp(value.charAt(this.lastChar) + '$'), "");
+      //this.input = value.replace(value.charAt(this.lastChar), "");
       document.getElementById("palabraInput")["value"] = this.input;
     }
     else if ((charCode >= 65 && charCode <= 90) || charCode === 192) {
