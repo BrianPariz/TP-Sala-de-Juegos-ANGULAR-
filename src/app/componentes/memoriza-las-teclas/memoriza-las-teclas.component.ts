@@ -8,8 +8,6 @@ import { getTranslationForTemplate } from '@angular/core/src/render3/i18n';
 })
 export class MemorizaLasTeclasComponent implements OnInit {
 
-  //public palabras:{ [palabra:string] : {asciiCode:number} } = {};
-
   public codes = new Array();
   public palabras:Array<string> = ['Oso', 'Casa', 'Banana', 'Sapo', 'Perro', 'Palabra','Calendario', 'Murcielago']; 
   public palabra:String;
@@ -17,6 +15,8 @@ export class MemorizaLasTeclasComponent implements OnInit {
   public indexLetra:number;
   public lastChar:number;
   public input:string;
+  public timeLeft:number;
+  public interval;
 
   constructor() 
   {
@@ -25,11 +25,23 @@ export class MemorizaLasTeclasComponent implements OnInit {
     this.ReiniciarAttr();
   }
 
+  ReiniciarJuego() {
+    this.palabra = this.palabras[0];
+    this.indexPalabra = 0;
+    document.getElementById("palabraInput")["disabled"] = false;
+    document.getElementById("palabraInput")["value"] = "";
+    document.getElementById("btnRestart")["style"]["display"] = "none";
+    this.ReiniciarAttr();
+  }
+
   ReiniciarAttr() {
     this.indexLetra = 0;
     this.palabra = this.palabras[this.indexPalabra];
     this.lastChar = 0;
     this.input = "";
+    clearInterval(this.interval);
+    this.timeLeft = 60;
+    this.StartTimer();
   }
 
   ngOnInit() {
@@ -122,15 +134,29 @@ export class MemorizaLasTeclasComponent implements OnInit {
   SiguientePalabra() {
 
     if(this.indexPalabra == 7){
-      alert("Ganaste, fin del juego.");
+      alert("GANASTE, fin del juego!");
       document.getElementById("palabraInput")["disabled"] = true;
+      document.getElementById("btnRestart")["style"]["display"] = "block";
     }
     else {
-      alert("Palabra completada! Que venga la siguiente");
+      alert("Palabra completada! La que sigueee");
       this.indexPalabra++;
       document.getElementById("palabraInput")["value"] = "";
       this.ReiniciarAttr();
       this.CodsAleatorios();
     }
+  }
+
+  StartTimer() {
+    this.interval = setInterval(() => {
+      if(this.timeLeft > 0) {
+        this.timeLeft--;
+      } else {
+        clearInterval(this.interval);
+        alert("Se acabó el tiempo, PERDISTE");
+        document.getElementById("palabraInput")["disabled"] = true;
+        document.getElementById("btnRestart")["style"]["display"] = "block";
+      }
+    },1000)
   }
 }

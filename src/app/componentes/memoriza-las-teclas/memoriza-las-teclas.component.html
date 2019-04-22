@@ -1,8 +1,12 @@
 <form name="juego">
     <div class="container" style="text-align: center; padding: 5%;">
         <h1>{{palabra}}</h1>
+        <h1>{{timeLeft}}</h1>
         <div class="row" style="padding: 5%;">
-            <input id="palabraInput" class="form-control" type="text" style="text-align:center;" (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)" >
+            <input id="palabraInput" class="form-control" type="text" style="text-align:center;" (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)">
+        </div>
+        <div class="row">
+            <button id="btnRestart" type="button" class="btn btn-primary" style="display:none;" (click)="ReiniciarJuego()">Jugar de nuevo</button>
         </div>
     </div>
 </form>
