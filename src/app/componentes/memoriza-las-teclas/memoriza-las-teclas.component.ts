@@ -9,7 +9,7 @@ import { getTranslationForTemplate } from '@angular/core/src/render3/i18n';
 export class MemorizaLasTeclasComponent implements OnInit {
 
   public codes = new Array();
-  public palabras:Array<string> = ['Oso', 'Casa', 'Banana', 'Sapo', 'Perro', 'Palabra','Calendario', 'Murcielago']; 
+  public palabras:Array<string> = ['Oso', 'Casa', 'Banana', 'Sapo', 'Perro', 'Palabra','Calendario', 'Murcielago', 'Arteriosclerosis']; 
   public palabra:String;
   public indexPalabra:number;
   public indexLetra:number;
@@ -18,12 +18,13 @@ export class MemorizaLasTeclasComponent implements OnInit {
   public timeLeft:number;
   public interval;
   public lastKeyCode:number;
+  public cantidadPalabras:number;
 
   constructor() 
   {
+    this.cantidadPalabras = 9;
     this.palabra = this.palabras[0];
     this.indexPalabra = 0;
-    this.ReiniciarAttr();
   }
 
   ReiniciarJuego() {
@@ -62,6 +63,11 @@ export class MemorizaLasTeclasComponent implements OnInit {
     }
 
     this.CodsAleatorios();
+    setTimeout(() => {
+      alert("Empezamos?");
+      this.ReiniciarAttr();
+      document.getElementById("palabraInput").focus();
+    }, 1000);
   }
 
   onKeyDown(event) {
@@ -146,7 +152,7 @@ export class MemorizaLasTeclasComponent implements OnInit {
   SiguientePalabra() {
     document.getElementById("palabraInput")["disabled"] = true;
     setTimeout(() => {
-      if(this.indexPalabra == 7)
+      if(this.indexPalabra == this.cantidadPalabras-1)
       {
         alert("GANASTE, fin del juego!");
         document.getElementById("palabraInput")["disabled"] = true;
@@ -161,6 +167,7 @@ export class MemorizaLasTeclasComponent implements OnInit {
       }
     }, 1000);
     document.getElementById("palabraInput")["disabled"] = false;
+    document.getElementById("palabraInput").focus();
   }
 
   StartTimer() {
