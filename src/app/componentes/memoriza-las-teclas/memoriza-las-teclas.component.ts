@@ -17,6 +17,7 @@ export class MemorizaLasTeclasComponent implements OnInit {
   public input:string;
   public timeLeft:number;
   public interval;
+  public lastKeyCode:number;
 
   constructor() 
   {
@@ -35,6 +36,7 @@ export class MemorizaLasTeclasComponent implements OnInit {
   }
 
   ReiniciarAttr() {
+    this.lastKeyCode = -1;
     this.indexLetra = 0;
     this.palabra = this.palabras[this.indexPalabra];
     this.lastChar = 0;
@@ -73,15 +75,11 @@ export class MemorizaLasTeclasComponent implements OnInit {
 
     if(charCode === 8) {
       this.input = value.replace(new RegExp(value.charAt(this.lastChar) + '$'), "");
-      //this.input = value.replace(value.charAt(this.lastChar), "");
       document.getElementById("palabraInput")["value"] = this.input;
+      this.lastKeyCode = -1;
     }
     else if ((charCode >= 65 && charCode <= 90) || charCode === 192) {
       
-      if(this.input.length == this.indexLetra+1) {
-        return false;
-      }
-
       charCode = charCode === 192 ? 209 : charCode;
 
       for (let i = 0; i < this.codes.length; i++) {
@@ -91,10 +89,20 @@ export class MemorizaLasTeclasComponent implements OnInit {
         }
       }
 
+      if(this.lastKeyCode == charCode) {
+        this.input = value.replace(new RegExp(value.charAt(this.lastChar) + '$'), "");
+        document.getElementById("palabraInput")["value"] = this.input;
+        this.lastKeyCode = -1;
+        return false;
+      }
+
+      if(this.input.length == this.indexLetra+1) {
+        return false;
+      }
+
       this.input += String.fromCharCode(charCode);
-      //newWord = value.replace(value.charAt(this.lastChar), String.fromCharCode(charCode));
-      document.getElementById("palabraInput")["value"] = this.input;
       
+      document.getElementById("palabraInput")["value"] = this.input;
       if(this.input.length <= this.palabra.length) {
         if(this.palabra[this.indexLetra].toUpperCase() == String.fromCharCode(charCode)) {
           
@@ -104,8 +112,12 @@ export class MemorizaLasTeclasComponent implements OnInit {
             return false;
           }
 
+          this.lastKeyCode = -1;
           this.lastChar++;
           this.indexLetra++;
+        }
+        else {
+          this.lastKeyCode = charCode;
         }
       }
     }
@@ -132,19 +144,23 @@ export class MemorizaLasTeclasComponent implements OnInit {
   }
 
   SiguientePalabra() {
-
-    if(this.indexPalabra == 7){
-      alert("GANASTE, fin del juego!");
-      document.getElementById("palabraInput")["disabled"] = true;
-      document.getElementById("btnRestart")["style"]["display"] = "block";
-    }
-    else {
-      alert("Palabra completada! La que sigueee");
-      this.indexPalabra++;
-      document.getElementById("palabraInput")["value"] = "";
-      this.ReiniciarAttr();
-      this.CodsAleatorios();
-    }
+    document.getElementById("palabraInput")["disabled"] = true;
+    setTimeout(() => {
+      if(this.indexPalabra == 7)
+      {
+        alert("GANASTE, fin del juego!");
+        document.getElementById("palabraInput")["disabled"] = true;
+        document.getElementById("btnRestart")["style"]["display"] = "block";
+      }
+      else {
+        alert("Palabra completada! La que sigueee");
+        this.indexPalabra++;
+        document.getElementById("palabraInput")["value"] = "";
+        this.ReiniciarAttr();
+        this.CodsAleatorios();
+      }
+    }, 1000);
+    document.getElementById("palabraInput")["disabled"] = false;
   }
 
   StartTimer() {
