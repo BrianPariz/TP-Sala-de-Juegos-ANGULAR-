@@ -9,7 +9,7 @@ import { getTranslationForTemplate } from '@angular/core/src/render3/i18n';
 export class MemorizaLasTeclasComponent implements OnInit {
 
   public codes = new Array();
-  public palabras:Array<string> = ['Oso', 'Casa', 'Banana', 'Sapo', 'Perro', 'Palabra','Calendario', 'Murcielago', 'Arteriosclerosis']; 
+  public palabras:Array<string> = ['Oso', 'Casa', 'Banana', 'Sapo', 'Perro', 'Palabra','Calendario', 'Murcielago', 'Arteriosclerosis'];
   public palabra:String;
   public indexPalabra:number;
   public indexLetra:number;
@@ -19,8 +19,10 @@ export class MemorizaLasTeclasComponent implements OnInit {
   public interval;
   public lastKeyCode:number;
   public cantidadPalabras:number;
+  public palabraInput;
+  public deshabilitado = true;
 
-  constructor() 
+  constructor()
   {
     this.cantidadPalabras = 9;
     this.palabra = this.palabras[0];
@@ -30,8 +32,9 @@ export class MemorizaLasTeclasComponent implements OnInit {
   ReiniciarJuego() {
     this.palabra = this.palabras[0];
     this.indexPalabra = 0;
-    document.getElementById("palabraInput")["disabled"] = false;
+    this.palabraInput.disable = false;
     document.getElementById("palabraInput")["value"] = "";
+    this.palabraInput.style = "display:none";
     document.getElementById("btnRestart")["style"]["display"] = "none";
     this.ReiniciarAttr();
   }
@@ -53,7 +56,7 @@ export class MemorizaLasTeclasComponent implements OnInit {
     //primero le agregamos el cod de la Ñ al primer objeto del array
     this.codes[0] = new Array(2);
     this.codes[0][0] = 209;
-  
+
     //luego a lo demás
     let index = 1;
     for (let code = 65; code <= 90; code++) {
@@ -75,8 +78,12 @@ export class MemorizaLasTeclasComponent implements OnInit {
   }
 
   onKeyUp(event) {
-    
-    let value = document.getElementById("palabraInput")["value"];
+
+    //let value = document.getElementById("palabraInput")["value"];
+
+    let value = palabraInput.value;
+
+    //USAR NGMODEL
     let charCode = event.keyCode;
 
     if(charCode === 8) {
@@ -85,7 +92,7 @@ export class MemorizaLasTeclasComponent implements OnInit {
       this.lastKeyCode = -1;
     }
     else if ((charCode >= 65 && charCode <= 90) || charCode === 192) {
-      
+
       charCode = charCode === 192 ? 209 : charCode;
 
       for (let i = 0; i < this.codes.length; i++) {
@@ -107,11 +114,11 @@ export class MemorizaLasTeclasComponent implements OnInit {
       }
 
       this.input += String.fromCharCode(charCode);
-      
+
       document.getElementById("palabraInput")["value"] = this.input;
       if(this.input.length <= this.palabra.length) {
         if(this.palabra[this.indexLetra].toUpperCase() == String.fromCharCode(charCode)) {
-          
+
           if(this.input.length == this.palabra.length)
           {
             this.SiguientePalabra();

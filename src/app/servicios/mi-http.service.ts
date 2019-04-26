@@ -9,11 +9,10 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class MiHttpService {
-  
-  constructor(public http:Http) { }
-  
-  public httpGetPromise(url: string, objeto:any){
 
+  constructor(public http:Http) { }
+
+  public httpGetPromise(url: string, objeto:any){
 
     return this.http
     .get(url)
@@ -21,6 +20,8 @@ export class MiHttpService {
     .then(this.extraerDatos)
     .catch(this.handleError);
   }
+
+//hacer post, put, delete
 
   private extraerDatos(resp:Response) {
 
@@ -31,5 +32,4 @@ export class MiHttpService {
 
       return error;
   }
-
 }

@@ -54,6 +54,7 @@ import { AgmCoreModule } from '@agm/core';
 import { InputJugadoresComponent } from './componentes/input-jugadores/input-jugadores.component';
 import { SexoPipe } from './pipes/sexo.pipe';
 import { MemorizaLasTeclasComponent } from './componentes/memoriza-las-teclas/memoriza-las-teclas.component';
+import { NuevoComponent } from './componentes/nuevo/nuevo.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { MemorizaLasTeclasComponent } from './componentes/memoriza-las-teclas/me
     JugadoresListadoComponent,
     InputJugadoresComponent,
     SexoPipe,
-    MemorizaLasTeclasComponent
+    MemorizaLasTeclasComponent,
+    NuevoComponent
   ],
   imports: [
     BrowserModule,
