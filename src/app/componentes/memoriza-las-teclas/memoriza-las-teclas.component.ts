@@ -79,9 +79,9 @@ export class MemorizaLasTeclasComponent implements OnInit {
 
   onKeyUp(event) {
 
-    //let value = document.getElementById("palabraInput")["value"];
+    let value = document.getElementById("palabraInput")["value"];
 
-    let value = palabraInput.value;
+    //let value = palabraInput.value;
 
     //USAR NGMODEL
     let charCode = event.keyCode;
