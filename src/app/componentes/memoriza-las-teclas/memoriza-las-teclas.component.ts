@@ -121,6 +121,7 @@ export class MemorizaLasTeclasComponent implements OnInit {
 
           if(this.input.length == this.palabra.length)
           {
+            clearInterval(this.interval);
             this.SiguientePalabra();
             return false;
           }
