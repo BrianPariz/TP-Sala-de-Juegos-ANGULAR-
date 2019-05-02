@@ -67,7 +67,7 @@ export class MemorizaLasTeclasComponent implements OnInit {
 
     this.CodsAleatorios();
     setTimeout(() => {
-      alert("Empezamos?");
+      alert("Bienvenido a Memokey!\n\nTu objetivo es completar la palabra indicada en el tiempo indicado, pero las letras NO ESTÁN DONDE DEBERÍAN!\n\nTené en cuenta que solo se puede escribir una letra a la vez, asique si no le embocás, tenes que borrarla para escribir otra, podes borrar de la manera tradicional o apretando la misma tecla dos veces!\n\nSuerte!");
       this.ReiniciarAttr();
       document.getElementById("palabraInput").focus();
     }, 1000);
