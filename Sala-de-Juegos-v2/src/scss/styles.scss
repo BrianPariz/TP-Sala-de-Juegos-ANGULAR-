@@ -1,4 +1,9 @@
-$fa-font-path: "~font-awesome/fonts/";
+@import "variables";
 
-@import "~bootstrap/scss/bootstrap.scss";
-@import "~font-awesome/scss/font-awesome.scss";
+.color_primary {
+    color: $primary;
+
+    &:hover {
+        color: $light-primary;
+    }
+}
