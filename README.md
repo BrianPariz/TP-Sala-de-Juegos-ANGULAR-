@@ -1,6 +1,6 @@
 Bienvenidos a mi Sala de Juegos!
 
-Este es un trabajo práctico obligatorio para aprobar la cursada, el juego Memokey es de mi autoría y el que quiera usar su código/idea deberá poner visible mi nombre en algún lugar cercano a éste.
+Este es un trabajo práctico obligatorio para aprobar la cursada, el juego Memokey es de mi autoría y el que quiera usar su código/idea deberá consultarme previamente, si esto no se cumple me veré en la obligación de iniciar acciones legales.
 
 La app está deployada en firebase la url es:
 
