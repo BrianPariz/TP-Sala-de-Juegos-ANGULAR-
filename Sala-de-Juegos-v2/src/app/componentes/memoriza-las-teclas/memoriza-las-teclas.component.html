@@ -1,0 +1,17 @@
+<form name="juego">
+    <div class="container">
+        <div class="cardGame">
+            <h1>{{palabra}}</h1>
+            <h3>{{timeLeft}}</h3>
+            <div class="row" style="padding: 5%;">
+                <input id="palabraInput" [disabled]="deshabilitado" class="form-control" type="text"
+                    style="text-align:center;" (keydown)="onKeyDown($event)" (keyup)="onKeyUp($event)">
+            </div>
+            <div class="row">
+                <button id="btnRestart" type="button" class="btn btn-secondary" style="display:none;"
+                    (click)="ReiniciarJuego()">Jugar de nuevo</button>
+            </div>
+        </div>
+        <button id="btnSalir" type="button" class="float-right mt-3 btn btn-secondary" (click)="salir()">Salir</button>
+    </div>
+</form>
