@@ -6,8 +6,8 @@ La app está deployada en firebase la url es:
 
 https://sala-de-juegos-546f1.web.app/
 
-En caso de que esta url se caiga probar con esta otra:
+En caso de que ésta url se caiga probar con esta otra:
 
 https://sala-de-juegos-546f1.firebaseapp.com/
 
-Espero disfrutes utilizándola y no copiando el código para aprobar la cursada!
+Espero que disfrutes utilizándola y que no te copies el código para aprobar tu cursada!
